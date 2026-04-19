@@ -122,17 +122,21 @@ Supports both prefix and slash commands.
 
 ## ⚙️ Configuration
 
+```
 token    → Discord bot token  
 prefix   → Command prefix  
-intents  → Gateway intents  
+intents  → Gateway intents
+```
 
 ---
 
 ## 📁 Suggested Structure
 
+```
 /src  
   /commands  
-  index.js  
+  index.js
+```
 
 ---
 
