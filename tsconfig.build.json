@@ -1,12 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "noEmit": false,
-    "allowImportingTsExtensions": false,
-    "emitDeclarationOnly": true,
+    "outDir": "./dist",
     "declaration": true,
-    "declarationDir": "./dist",
-    "outDir": "./dist"
+    "emitDeclarationOnly": false
   },
   "exclude": ["src/test", "node_modules", "dist"]
 }

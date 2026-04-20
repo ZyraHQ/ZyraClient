@@ -1,7 +1,7 @@
 {
   "name": "zyraclient",
   "description": "A modern and powerful library for building Discord bots with simplicity and scalability.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "MIT",
   "keywords": [
     "discord",
@@ -26,7 +26,7 @@
   "files": ["dist"],
   "scripts": {
     "dev": "bun run --watch src/test/index.ts",
-    "build": "bun build ./src/index.ts --outdir ./dist --target node && tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json",
     "prepublishOnly": "bun run build"
   },
   "repository": {
