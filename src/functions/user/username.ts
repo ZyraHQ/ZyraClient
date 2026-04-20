@@ -5,12 +5,17 @@ export default new Function({
   name: "username",
   args: [
     {
-      name: "id",
+      name: "userId",
       type: "string",
       optional: true,
     },
   ],
-  execute: (ctx: Message | ChatInputCommandInteraction) => {
-    return ctx instanceof Message ? ctx.author.username : ctx.user.username;
+  execute: async (ctx: Message | ChatInputCommandInteraction, args) => {
+    const userId =
+      args?.userId || (ctx instanceof Message ? ctx.author.id : ctx.user.id);
+    const user = await ctx.client.users.fetch(userId).catch(() => null);
+    if (!user) return { __error: `User "**${userId}**" not found` };
+
+    return user.username ?? "";
   },
 });

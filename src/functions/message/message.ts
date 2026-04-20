@@ -12,8 +12,10 @@ export default new Function({
 
     const parts = ctx.content.trim().split(/\s+/).slice(1);
 
-    const hasIndex = args?.index !== undefined && args?.index !== null && args.index !== "";
-    const hasEnd = args?.end !== undefined && args?.end !== null && args.end !== "";
+    const hasIndex =
+      args?.index !== undefined && args?.index !== null && args.index !== "";
+    const hasEnd =
+      args?.end !== undefined && args?.end !== null && args.end !== "";
 
     if (!hasIndex && !hasEnd) {
       return parts.join(" ");

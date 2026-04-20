@@ -37,7 +37,7 @@ npm install zyraclient
 import ZyraClient from "zyraclient";
 
 const client = new ZyraClient({
-  token: process.env.TOKEN, // keep it safe 👀
+  token: process.env["TOKEN"], // keep it safe 👀
   prefix: "z+",
   intents: ["Guilds", "GuildMessages", "MessageContent"],
 });

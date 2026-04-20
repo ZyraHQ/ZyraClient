@@ -13,14 +13,19 @@ export default new Function({
     const index = args.index ? Number(args.index) : 1;
 
     if (Number.isNaN(index) || index < 1 || index > 10) {
-      return `**ZyraClient**: I detected an error while using the function "**$color**"\n> Embed index must be between **1** and **10**.`;
+      return { __error: `Embed index must be between **1** and **10**` };
+    }
+
+    if (args.color === "Random") {
+      const color = Math.floor(Math.random() * 0xffffff);
+      return { __embed: { color }, __embedIndex: index };
     }
 
     const hex = args.color.replace("#", "");
     const color = parseInt(hex, 16);
 
     if (Number.isNaN(color)) {
-      return `**ZyraClient**: I detected an error while using the function "**$color**"\n> Invalid color "**${args.color}**".`;
+      return { __error: `Invalid color "**${args.color}**"` };
     }
 
     return { __embed: { color }, __embedIndex: index };

@@ -59,6 +59,15 @@ const formatError = (
   return `**ZyraClient**: I detected an error while using the function "**$${fnName}**"\n> Missing required argument "**${argName}**" in **$${fnName}**. (line ${line}, colun ${col})`;
 };
 
+const formatCustomError = (
+  fnName: string,
+  message: string,
+  line: number,
+  col: number,
+): string => {
+  return `**ZyraClient**: I detected an error while using the function "**$${fnName}**"\n> ${message} in **$${fnName}**. (line ${line}, colun ${col})`;
+};
+
 const parseArgs = (
   raw: string,
   fn: Function,
@@ -118,6 +127,18 @@ export interface EmbedData {
   timestamp?: boolean;
 }
 
+export interface ButtonData {
+  customId: string;
+  label: string;
+  style: string;
+  emoji?: string;
+  disabled?: boolean;
+}
+
+export interface ActionRowData {
+  buttonIndices: number[];
+}
+
 export interface ParsedResult {
   content: string;
   reply: boolean;
@@ -125,6 +146,8 @@ export interface ParsedResult {
     | MessageMentionOptions
     | InteractionReplyOptions["allowedMentions"];
   embeds?: Record<number, EmbedData>;
+  buttons?: Record<number, ButtonData>;
+  actionRows?: ActionRowData[];
 }
 
 type Node =
@@ -227,6 +250,9 @@ const executeNodes = async (
   let shouldReply = false;
   let mentionReply = true;
   let embeds: Record<number, EmbedData> = {};
+  let buttons: Record<number, ButtonData> = {};
+  let buttonBuffer: number[] = [];
+  let actionRows: ActionRowData[] = [];
 
   for (const node of nodes) {
     if (node.type === "text") {
@@ -270,45 +296,138 @@ const executeNodes = async (
           mentionReply = v.__mentionReply ?? true;
         }
 
-        if (v.__embed) {
-          const index: number = v.__embedIndex ?? 1;
+        if (v.__error) {
+          const { line, col } = getLocation(template, node.index);
+          return {
+            content: formatCustomError(node.name, v.__error, line, col),
+            reply: true,
+          };
+        }
 
-          if (index < 1 || index > 10) {
+        if (v.__embed) {
+          const embedIndex: number = v.__embedIndex ?? 1;
+          const { line, col } = getLocation(template, node.index);
+
+          if (embedIndex < 1 || embedIndex > 10) {
             return {
-              content: `**ZyraClient**: Embed index must be between **1** and **10**.`,
+              content: formatCustomError(
+                node.name,
+                `Embed index must be between **1** and **10**`,
+                line,
+                col,
+              ),
               reply: true,
             };
           }
 
-          embeds[index] ??= {};
-          Object.assign(embeds[index], v.__embed);
+          embeds[embedIndex] ??= {};
+          Object.assign(embeds[embedIndex], v.__embed);
         }
 
         if (v.__embedField) {
-          const index: number = v.__embedIndex ?? 1;
-          embeds[index] ??= {};
-          embeds[index]!.fields ??= [];
-          embeds[index]!.fields!.push(v.__embedField);
+          const embedIndex: number = v.__embedIndex ?? 1;
+          const { line, col } = getLocation(template, node.index);
+
+          if (embedIndex < 1 || embedIndex > 10) {
+            return {
+              content: formatCustomError(
+                node.name,
+                `Embed index must be between **1** and **10**`,
+                line,
+                col,
+              ),
+              reply: true,
+            };
+          }
+
+          embeds[embedIndex] ??= {};
+          embeds[embedIndex]!.fields ??= [];
+          embeds[embedIndex]!.fields!.push(v.__embedField);
+        }
+
+        if (v.__button) {
+          const buttonIndex = Object.keys(buttons).length + 1;
+
+          buttons[buttonIndex] = v.__button;
+          buttonBuffer.push(buttonIndex);
+
+          if (buttonBuffer.length > 5) {
+            const { line, col } = getLocation(template, node.index);
+            return {
+              content: formatCustomError(
+                "addActionRow",
+                "Action row limit reached (**5 buttons max**). Use $addActionRow to start a new row.",
+                line,
+                col,
+              ),
+              reply: true,
+            };
+          }
+        }
+
+        if (v.__actionRow) {
+          if (buttonBuffer.length === 0) {
+            const { line, col } = getLocation(template, node.index);
+            return {
+              content: formatCustomError(
+                node.name,
+                "Cannot create an empty action row. Add at least one button before using $addActionRow.",
+                line,
+                col,
+              ),
+              reply: true,
+            };
+          }
+
+          actionRows.push({
+            buttonIndices: [...buttonBuffer],
+          });
+
+          buttonBuffer = [];
+
+          if (actionRows.length > 5) {
+            const { line, col } = getLocation(template, node.index);
+            return {
+              content: formatCustomError(
+                node.name,
+                "Action row limit reached (**5 max per message**).",
+                line,
+                col,
+              ),
+              reply: true,
+            };
+          }
         }
       } else {
         content += toText(value);
       }
     } catch {
+      const { line, col } = getLocation(template, node.index);
       return {
-        content: `**ZyraClient**: error in "$${node.name}"`,
+        content: formatCustomError(
+          node.name,
+          `An unexpected error occurred`,
+          line,
+          col,
+        ),
         reply: true,
       };
     }
   }
 
+  if (buttonBuffer.length > 0) {
+    actionRows.push({
+      buttonIndices: [...buttonBuffer],
+    });
+  }
+
   return {
     content: content.trim(),
-    allowedMentions: {
-      ...allowedMentions,
-      repliedUser: mentionReply,
-    },
+    allowedMentions: { ...allowedMentions, repliedUser: mentionReply },
     reply: shouldReply,
     embeds: Object.keys(embeds).length ? embeds : undefined,
+    buttons: Object.keys(buttons).length ? buttons : undefined,
+    actionRows: actionRows.length ? actionRows : undefined,
   };
 };
 

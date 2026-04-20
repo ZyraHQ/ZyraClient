@@ -27,7 +27,18 @@ export type EmbedPayload = {
   content?: string;
 };
 
-export type FunctionReturn = string | number | boolean | EmbedPayload;
+export type ComponentPayload = {
+  __button?: {
+    customId: string;
+    label: string;
+    style: string;
+    emoji?: string;
+    disabled?: boolean;
+  };
+  __actionRow?: boolean;
+};
+
+export type FunctionReturn = string | number | boolean | EmbedPayload | ComponentPayload | URL | { __error: string };
 
 export const FunctionOptionsSchema = z.object({
   name: z.string().min(1, "Function name is required"),

@@ -1,7 +1,7 @@
 {
   "name": "zyraclient",
   "description": "A modern and powerful library for building Discord bots with simplicity and scalability.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "keywords": [
     "discord",

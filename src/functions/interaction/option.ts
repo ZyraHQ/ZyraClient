@@ -3,9 +3,7 @@ import { Message, type ChatInputCommandInteraction } from "discord.js";
 
 export default new Function({
   name: "option",
-  args: [
-    { name: "name", type: "string", optional: false },
-  ],
+  args: [{ name: "name", type: "string", optional: false }],
   execute: (ctx: Message | ChatInputCommandInteraction, args) => {
     if (ctx instanceof Message) return "";
 

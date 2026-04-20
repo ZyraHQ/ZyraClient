@@ -56,7 +56,9 @@ export class App extends Client {
 
     await this.application?.commands.set(commands as any);
 
-    consola.success(`${chalk.magenta(commands.length)} slash command(s) registrado(s)!`);
+    consola.success(
+      `${chalk.magenta(commands.length)} slash command(s) registrado(s)!`,
+    );
   }
 
   public async start() {
@@ -78,7 +80,7 @@ export class App extends Client {
     }
   }
 
-  public addStatus(status: StatusOptionsType | StatusOptionsType[]) {
+  public setStatus(status: StatusOptionsType | StatusOptionsType[]): this {
     const list = Array.isArray(status) ? status : [status];
 
     for (const s of list) {
@@ -92,7 +94,7 @@ export class App extends Client {
           consola.error(chalk.red(`- ${path}: ${err.message}`));
         });
 
-        return;
+        return this;
       }
     }
 
@@ -117,7 +119,13 @@ export class App extends Client {
       }
     };
 
-    updateStatus();
+    if (this.isReady()) {
+      updateStatus();
+    } else {
+      this.once("clientReady", updateStatus);
+    }
+
+    return this;
   }
 
   public addPrefixCommand(options: PrefixCommandType) {

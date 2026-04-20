@@ -1,50 +1,71 @@
-import App from "@/index";
+import ZyraClient from "@/index";
 
-const client = new App({
-  token:
-    "MTMxNTA5OTQ0NzkwNjI3NTQwOA.G_TCiy.NN69eAGU65aN6af0xgU1A9kQMnyxoFwE8OVpmY",
-  intents: ["Guilds", "GuildMessages", "MessageContent"],
+const client = new ZyraClient({
+  token: process.env["TOKEN"]!, // keep it safe 👀
   prefix: "z+",
+  intents: ["Guilds", "GuildMessages", "MessageContent"],
 });
 
-client.addStatus([{ type: "Playing", name: "🍇 - ZyraClient" }]);
+// Bot Status
+client.setStatus([
+  {
+    type: "Playing",
+    name: "🍇 ZyraClient",
+  },
+]);
 
+// Prefix Commands
 client.addPrefixCommand({
   name: "ping",
-  description: "ver ping",
-  code: `> WebSocket: $ping`,
+  description: "Check bot latency",
+  code: `
+  🏓 Pong! WebSocket: **$ping ms**
+  `,
 });
 
 client.addPrefixCommand({
   name: "embed",
-  description: "criar um embed simples",
+  description: "Send a simple embed",
   code: `
-  $reply[;;false]
-  $description[Este é um embed de teste!;1]
-  $description[Este é o segundo campo do embed!;2]`,
+  $description[✨ This is a test embed!;1]
+  $color[Random;1]
+  $description[🚀 ZyraClient makes it easy.;2]
+  $color[Random;2]
+  $addButton[btn1;Click;primary]
+  `,
 });
 
+client.addPrefixCommand({
+  name: "avatar",
+  description: "Get your avatar URL",
+  code: `
+  🖼️ Your avatar: $hyperLink[$userDisplayName;$userAvatar[$authorID]]
+  `,
+});
+
+// Slash Commands
 client.addSlashCommand({
   name: "say",
+  description: "Make the bot say something",
   nameLocalizations: {
     "pt-BR": "falar",
   },
-  description: "make the bot say something",
   descriptionLocalizations: {
-    "pt-BR": "fazer o bot falar algo",
+    "pt-BR": "Fazer o bot falar algo",
   },
   type: "ChatInput",
   options: [
     {
       name: "message",
-      description: "the message to say",
+      description: "Message to send",
       type: "String",
       required: true,
     },
   ],
   code: `
-  $reply[;;true]
-  $userDisplayName/$memberDisplayName mandou eu falar: $option[message]`,
+  💬 **$userDisplayName**: $option[message]
+  `,
 });
 
+// Start the bot
 await client.start();
