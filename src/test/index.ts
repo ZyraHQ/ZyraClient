@@ -1,4 +1,4 @@
-import ZyraClient from "@/index";
+import ZyraClient from "../index";
 
 const client = new ZyraClient({
   token: process.env["TOKEN"]!, // keep it safe 👀

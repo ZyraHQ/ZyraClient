@@ -1,6 +1,6 @@
 import { readdirSync, statSync } from "fs";
 import { join } from "path";
-import type { App } from "@/structures/App";
+import type { App } from "../structures/App";
 
 export const loadListeners = async (client: App): Promise<void> => {
   const dir = join(import.meta.dirname, "../listeners");

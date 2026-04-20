@@ -23,11 +23,5 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false,
-    
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }
   }
 }

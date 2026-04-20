@@ -4,7 +4,7 @@ import type {
   MessageMentionOptions,
   InteractionReplyOptions,
 } from "discord.js";
-import type { Function } from "@/structures/Function";
+import type { Function } from "../structures/Function";
 import { readdirSync, statSync } from "fs";
 import { join } from "path";
 

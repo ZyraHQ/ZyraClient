@@ -13,13 +13,13 @@ import {
   SlashOptionTypes,
   type SlashCommandType,
   type SlashOptionType,
-} from "@/types/SlshCommandOptions";
+} from "../types/SlshCommandOptions";
 import {
   parseMessage,
   type ButtonData,
   type ActionRowData,
   type EmbedData,
-} from "@/utils/parseMessage";
+} from "../utils/parseMessage";
 import chalk from "chalk";
 import consola from "consola";
 

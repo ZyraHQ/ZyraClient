@@ -1,4 +1,4 @@
-import { Function } from "@/structures/Function";
+import { Function } from "../../structures/Function";
 import type { Message, ChatInputCommandInteraction } from "discord.js";
 
 export default new Function({

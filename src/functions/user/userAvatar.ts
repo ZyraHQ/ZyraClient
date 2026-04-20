@@ -1,4 +1,4 @@
-import { Function } from "@/structures/Function";
+import { Function } from "../../structures/Function";
 import {
   Message,
   type ChatInputCommandInteraction,

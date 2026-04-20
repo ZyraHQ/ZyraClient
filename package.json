@@ -29,9 +29,9 @@
   ],
   "scripts": {
     "dev": "bun run --watch src/test/index.ts",
-    "build": "bun build ./src/index.ts --outdir ./dist --target node && tsc -p tsconfig.build.json",
-    "prepublishOnly": "npm run build",
-    "release": "npm version patch && git push && git push --tags"
+     "build": "tsc -p tsconfig.build.json",
+    "prepublishOnly": "bun run build",
+    "release": "bun run build && npm version patch && git push --follow-tags && npm publish"
   },
   "repository": {
     "type": "git",

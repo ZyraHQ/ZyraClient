@@ -2,11 +2,22 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noEmit": false,
-    "allowImportingTsExtensions": false,
-    "emitDeclarationOnly": true,
     "declaration": true,
-    "declarationDir": "./dist",
-    "outDir": "./dist"
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "module": "ESNext",
+    "target": "ES2020",
+    "moduleResolution": "bundler",
+    "verbatimModuleSyntax": false,
+    "allowImportingTsExtensions": false
   },
-  "exclude": ["src/test", "node_modules", "dist"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/test"
+  ]
 }

@@ -1,5 +1,5 @@
 import type { Message } from "discord.js";
-import type { App } from "@/structures/App";
+import type { App } from "../structures/App";
 
 export default async (client: App, message: Message): Promise<void> => {
   if (message.author.bot) return;

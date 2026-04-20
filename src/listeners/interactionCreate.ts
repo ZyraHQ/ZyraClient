@@ -1,5 +1,5 @@
 import type { Interaction } from "discord.js";
-import type { App } from "@/structures/App";
+import type { App } from "../structures/App";
 
 export default async (client: App, interaction: Interaction): Promise<void> => {
   if (!interaction.isChatInputCommand()) return;

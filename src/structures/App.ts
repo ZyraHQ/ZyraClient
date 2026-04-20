@@ -1,18 +1,18 @@
 import { Client, Collection } from "discord.js";
-import { IntentsOptions } from "@/types/IntentsOptions";
-import { AppOptionsSchema, type AppOptions } from "@/types/AppOptions";
+import { IntentsOptions } from "../types/IntentsOptions";
+import { AppOptionsSchema, type AppOptions } from "../types/AppOptions";
 import consola from "consola";
 import chalk from "chalk";
 import {
   StatusOptionsSchema,
   StatusTypes,
   type StatusOptionsType,
-} from "@/types/StatusOptions";
+} from "../types/StatusOptions";
 import { PrefixCommand } from "./PrefixCommand";
-import { loadListeners } from "@/utils/loadListeners";
+import { loadListeners } from "../utils/loadListeners";
 import { SlashCommand } from "./SlashCommand";
-import type { PrefixCommandType } from "@/types/PrefixCommandOptions";
-import type { SlashCommandType } from "@/types/SlshCommandOptions";
+import type { PrefixCommandType } from "../types/PrefixCommandOptions";
+import type { SlashCommandType } from "../types/SlshCommandOptions";
 
 export class App extends Client {
   public prefix?: string | string[];

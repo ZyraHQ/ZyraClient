@@ -8,9 +8,14 @@ import {
   type MessageMentionOptions,
   type TextBasedChannel,
 } from "discord.js";
-import { PrefixCommandSchema } from "@/types/PrefixCommandOptions";
-import { parseMessage, type ButtonData, type ActionRowData, type EmbedData } from "@/utils/parseMessage";
-import type { PrefixCommandType } from "@/types/PrefixCommandOptions";
+import { PrefixCommandSchema } from "../types/PrefixCommandOptions";
+import {
+  parseMessage,
+  type ButtonData,
+  type ActionRowData,
+  type EmbedData,
+} from "../utils/parseMessage";
+import type { PrefixCommandType } from "../types/PrefixCommandOptions";
 import consola from "consola";
 
 const buildEmbed = (data: EmbedData): EmbedBuilder =>
@@ -40,7 +45,9 @@ const buildComponents = (
       const btn = buttons[index];
       if (!btn) continue;
 
-      const style = ButtonStyle[btn.style as keyof typeof ButtonStyle] ?? ButtonStyle.Primary;
+      const style =
+        ButtonStyle[btn.style as keyof typeof ButtonStyle] ??
+        ButtonStyle.Primary;
 
       const button = new ButtonBuilder()
         .setCustomId(btn.customId)
@@ -74,9 +81,7 @@ export class PrefixCommand {
     this.code = parsed.code;
   }
 
-  public async execute(
-    ctx: Message,
-  ): Promise<void> {
+  public async execute(ctx: Message): Promise<void> {
     const res = await parseMessage(this.code, ctx);
 
     const embeds = res.embeds
@@ -106,7 +111,9 @@ export class PrefixCommand {
       if (res.reply) {
         await ctx.reply(payload);
       } else if (ctx.channel.isTextBased() && "send" in ctx.channel) {
-        await (ctx.channel as TextBasedChannel & { send: Function }).send(payload);
+        await (ctx.channel as TextBasedChannel & { send: Function }).send(
+          payload,
+        );
       }
     } catch (err) {
       consola.error(chalk.bold.red("Failed to send message:", err));
