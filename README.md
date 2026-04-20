@@ -1,29 +1,31 @@
 # ⚡ ZyraClient
 
-> A modern, powerful, and developer-friendly library for building Discord bots with speed and scalability.
-
-## ✨ Overview
-
-**ZyraClient** is built for developers who want to create Discord bots without friction.  
-It provides a clean architecture, intuitive APIs, and the flexibility to scale from simple bots to advanced systems.
-
-Built on top of discord.js, **ZyraClient** delivers a simpler, more organized, and productive development experience — without sacrificing performance or control.
-
-Build smarter. Ship faster. 🚀
+> Build Discord bots faster, cleaner, and smarter.
 
 ---
 
-## 🚀 Features
+# 🧭 About
 
-- ⚡ Fast setup  
-- 🧩 Prefix & Slash command system
-- 🔒 Secure by design  
-- 🧠 Powered by discord.js  
-- 🚧 Event system (coming soon)
+**ZyraClient** is a modern abstraction layer built on top of discord.js, designed to eliminate friction in Discord bot development.
+
+It provides a clean architecture, expressive APIs, and a scalable foundation — allowing you to focus on features instead of repetitive setup and structural overhead.
+
+Whether you're building a small utility bot or a large-scale system, ZyraClient is engineered to keep your codebase organized, maintainable, and extensible.
 
 ---
 
-## 📦 Installation
+✨ Highlights
+
+- ⚡ Rapid setup — minimal configuration to get started
+- 🧩 Unified command system — prefix & slash support
+- 🧠 Abstraction over discord.js — less boilerplate, more logic
+- 🏗️ Modular architecture — built for scalability
+- 🔒 Safe patterns by design — cleaner and more predictable code
+- 🚀 Actively evolving — new features and improvements planned
+
+---
+
+# 📦 Installation
 
 ```bash
 npm install zyraclient
@@ -31,18 +33,17 @@ npm install zyraclient
 
 ---
 
-## ⚡ Example Usage
+# ⚡ Quick Example
 
 ```js
 import ZyraClient from "zyraclient";
 
 const client = new ZyraClient({
-  token: process.env["TOKEN"], // keep it safe 👀
+  token: process.env.TOKEN,
   prefix: "z+",
   intents: ["Guilds", "GuildMessages", "MessageContent"],
 });
 
-// Bot Status
 client.setStatus([
   {
     type: "Playing",
@@ -50,7 +51,6 @@ client.setStatus([
   },
 ]);
 
-// Prefix Commands
 client.addPrefixCommand({
   name: "ping",
   description: "Check bot latency",
@@ -59,25 +59,9 @@ client.addPrefixCommand({
   `,
 });
 
-client.addPrefixCommand({
-  name: "embed",
-  description: "Send a simple embed",
-  code: `
-  $description[✨ This is a test embed!;1]
-  $description[🚀 ZyraClient makes it easy.;2]
-  `,
-});
-
-// Slash Commands
 client.addSlashCommand({
   name: "say",
   description: "Make the bot say something",
-  nameLocalizations: {
-    "pt-BR": "falar",
-  },
-  descriptionLocalizations: {
-    "pt-BR": "Fazer o bot falar algo",
-  },
   type: "ChatInput",
   options: [
     {
@@ -92,86 +76,87 @@ client.addSlashCommand({
   `,
 });
 
-// Start the bot
 await client.start();
 ```
 
 ---
 
-## 🧠 Core Concepts
+# 🧠 Design Principles
 
-### Commands
+**ZyraClient is built around a strong set of engineering principles:**
 
-```js
-client.addPrefixCommand({
-  name: "hello",
-  code: `Hello $username 👋`,
-});
+- Clarity over complexity
+- Convention over configuration
+- Scalability from day one
+- Developer experience as a priority
 
-client.addSlashCommand({
-  name: "hello",
-  description: "Say hello",
-  type: "ChatInput",
-  code: `Hello $userDisplayName 👋`,
-});
-```
-
-Supports both prefix and slash commands.
+It avoids unnecessary abstractions while still providing powerful tools to accelerate development.
 
 ---
 
-## ⚙️ Configuration
+# 🧩 Architecture
 
-```
-token    → Discord bot token  
-prefix   → Command prefix  
-intents  → Gateway intents
-```
+ZyraClient promotes a modular structure, encouraging separation of concerns and long-term maintainability.
+
+It does not enforce rigid patterns — instead, it gives you a flexible foundation that adapts to your workflow while maintaining consistency across your project.
 
 ---
 
-## 📁 Suggested Structure
+# ⚙️ Configuration
 
-```
-/src  
-  /commands  
-  index.js
+```bash
+{
+  token: "Your bot token",
+  prefix: "Command prefix",
+  intents: ["Gateway intents"]
+}
 ```
 
 ---
 
-## 🧪 Best Practices
+# 📁 Suggested Structure
 
-- Use .env for sensitive data  
-- Keep commands modular  
-- Avoid hardcoding values  
-- Structure your bot for scalability  
+```bash
+src/
+ ├── commands/
+ ├── events/
+ └── index.js
+```
+---
+
+# 🧪 Best Practices
+
+- 🔐 Use environment variables for sensitive data
+- 🧩 Keep features modular
+- 🚫 Avoid hardcoded values
+- 📈 Design with scalability in mind
 
 ---
 
-## 🤝 Contributing
+# 🤝 Contributing
 
-1. Fork the repository  
-2. Create a new branch  
-3. Commit your changes  
-4. Open a Pull Request  
+Contributions are welcome and encouraged.
 
----
-
-## ⭐ Support
-
-If you like this project, consider giving it a star ⭐  
+- Fork the repository
+- Create a new branch
+- Submit your improvements via Pull Request
 
 ---
 
-## 📄 License
+# ⭐ Support
 
-MIT License  
+If ZyraClient helps you, consider giving the project a star it helps the ecosystem grow.
 
 ---
 
-## 💭 Final Thoughts
+# 📄 License
 
-ZyraClient is focused on delivering a smooth and efficient developer experience for Discord bot development.
+MIT License
 
-More features are on the way — stay tuned.
+---
+
+# 💭 Final Note
+
+ZyraClient is built to remove friction, increase productivity, and scale with your ideas.
+
+Less setup. More building.
