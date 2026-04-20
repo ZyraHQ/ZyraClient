@@ -16,7 +16,7 @@ import {
   type EmbedData,
 } from "../utils/parseMessage";
 import type { PrefixCommandType } from "../types/PrefixCommandOptions";
-import consola from "consola";
+import { consola } from "consola";
 
 const buildEmbed = (data: EmbedData): EmbedBuilder =>
   new EmbedBuilder({

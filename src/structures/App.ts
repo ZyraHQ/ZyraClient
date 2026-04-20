@@ -1,7 +1,7 @@
 import { Client, Collection } from "discord.js";
 import { IntentsOptions } from "../types/IntentsOptions";
 import { AppOptionsSchema, type AppOptions } from "../types/AppOptions";
-import consola from "consola";
+import { consola } from "consola";
 import chalk from "chalk";
 import {
   StatusOptionsSchema,

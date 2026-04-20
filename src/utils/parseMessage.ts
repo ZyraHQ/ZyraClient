@@ -18,7 +18,7 @@ const loadFunctions = async () => {
     if (!statSync(folderPath).isDirectory()) continue;
 
     for (const file of readdirSync(folderPath)) {
-      if (!file.endsWith(".ts")) continue;
+      if (!file.endsWith(".js")) continue;
 
       const filePath = join(folderPath, file);
       const mod = await import(filePath);

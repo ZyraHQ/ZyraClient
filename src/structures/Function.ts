@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { z } from "zod";
 import type { Message, ChatInputCommandInteraction } from "discord.js";
-import consola from "consola";
+import { consola } from "consola";
 
 export const FunctionArgSchema = z.object({
   name: z.string().min(1, "Arg name is required"),
@@ -38,7 +38,14 @@ export type ComponentPayload = {
   __actionRow?: boolean;
 };
 
-export type FunctionReturn = string | number | boolean | EmbedPayload | ComponentPayload | URL | { __error: string };
+export type FunctionReturn =
+  | string
+  | number
+  | boolean
+  | EmbedPayload
+  | ComponentPayload
+  | URL
+  | { __error: string };
 
 export const FunctionOptionsSchema = z.object({
   name: z.string().min(1, "Function name is required"),
