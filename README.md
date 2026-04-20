@@ -109,7 +109,8 @@ It does not enforce rigid patterns — instead, it gives you a flexible foundati
   token: "Your bot token",
   prefix: "Command prefix",
   intents: ["Gateway intents"]
-}```
+}
+```
 
 ---
 
