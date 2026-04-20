@@ -19,5 +19,5 @@ export default async (client: App, message: Message): Promise<void> => {
   const command = client.prefixCommands.get(commandName);
   if (!command) return;
 
-  await command.execute(message, args);
+  await command.execute(message);
 };
