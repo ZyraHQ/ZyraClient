@@ -6,7 +6,7 @@
 
 # 🧭 About
 
-ZyraClient is a modern abstraction layer built on top of discord.js, designed to eliminate friction in Discord bot development.
+**ZyraClient** is a modern abstraction layer built on top of discord.js, designed to eliminate friction in Discord bot development.
 
 It provides a clean architecture, expressive APIs, and a scalable foundation — allowing you to focus on features instead of repetitive setup and structural overhead.
 
@@ -25,14 +25,17 @@ Whether you're building a small utility bot or a large-scale system, ZyraClient 
 
 ---
 
-📦 Installation
+# 📦 Installation
 
+```bash
 npm install zyraclient
+```
 
 ---
 
-⚡ Quick Example
+# ⚡ Quick Example
 
+```js
 import ZyraClient from "zyraclient";
 
 const client = new ZyraClient({
@@ -74,12 +77,13 @@ client.addSlashCommand({
 });
 
 await client.start();
+```
 
 ---
 
-🧠 Design Principles
+# 🧠 Design Principles
 
-ZyraClient is built around a strong set of engineering principles:
+**ZyraClient is built around a strong set of engineering principles:**
 
 - Clarity over complexity
 - Convention over configuration
@@ -90,7 +94,7 @@ It avoids unnecessary abstractions while still providing powerful tools to accel
 
 ---
 
-🧩 Architecture
+# 🧩 Architecture
 
 ZyraClient promotes a modular structure, encouraging separation of concerns and long-term maintainability.
 
@@ -98,26 +102,28 @@ It does not enforce rigid patterns — instead, it gives you a flexible foundati
 
 ---
 
-⚙️ Configuration
+# ⚙️ Configuration
 
+```json
 {
   token: "Your bot token",
   prefix: "Command prefix",
   intents: ["Gateway intents"]
-}
+}```
 
 ---
 
-📁 Suggested Structure
+# 📁 Suggested Structure
 
+```file
 src/
  ├── commands/
  ├── events/
  └── index.js
-
+```
 ---
 
-🧪 Best Practices
+# 🧪 Best Practices
 
 - 🔐 Use environment variables for sensitive data
 - 🧩 Keep features modular
@@ -126,7 +132,7 @@ src/
 
 ---
 
-🤝 Contributing
+# 🤝 Contributing
 
 Contributions are welcome and encouraged.
 
@@ -136,19 +142,19 @@ Contributions are welcome and encouraged.
 
 ---
 
-⭐ Support
+# ⭐ Support
 
-If ZyraClient helps you, consider giving the project a star — it helps the ecosystem grow.
+If ZyraClient helps you, consider giving the project a star it helps the ecosystem grow.
 
 ---
 
-📄 License
+# 📄 License
 
 MIT License
 
 ---
 
-💭 Final Note
+# 💭 Final Note
 
 ZyraClient is built to remove friction, increase productivity, and scale with your ideas.
 
