@@ -1,9 +1,20 @@
 {
   "name": "zyraclient",
-  "module": "src/index.ts",
+  "version": "0.0.5",
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist"],
   "scripts": {
-    "dev": "bun run --watch src/test/index.ts"
+    "dev": "bun run --watch src/test/index.ts",
+    "build": "bun build ./src/index.ts --outdir ./dist --target node && tsc -p tsconfig.build.json",
+    "prepublishOnly": "bun run build"
   },
   "devDependencies": {
     "@types/bun": "latest",

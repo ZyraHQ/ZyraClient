@@ -1,0 +1,6 @@
+src/
+node_modules/
+bun.lock
+tsconfig*.json
+*.test.ts
+.env*
