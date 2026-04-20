@@ -1,6 +1,19 @@
 {
   "name": "zyraclient",
+  "description": "A modern and powerful library for building Discord bots with simplicity and scalability.",
   "version": "0.0.5",
+  "license": "MIT",
+  "keywords": [
+    "discord",
+    "discord-bot",
+    "discordjs",
+    "bot-framework",
+    "bot",
+    "nodejs",
+    "typescript",
+    "zyra",
+    "zyraclient"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -15,6 +28,17 @@
     "dev": "bun run --watch src/test/index.ts",
     "build": "bun build ./src/index.ts --outdir ./dist --target node && tsc -p tsconfig.build.json",
     "prepublishOnly": "bun run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZyraHQ/zyraclient.git"
+  },
+  "homepage": "https://github.com/ZyraHQ/zyraclient",
+  "bugs": {
+    "url": "https://github.com/ZyraHQ/zyraclient/issues"
+  },
+  "engines": {
+    "node": ">=18.x"
   },
   "devDependencies": {
     "@types/bun": "latest",
