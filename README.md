@@ -1,6 +1,6 @@
 # ⚡ ZyraClient
 
-«Build Discord bots faster, cleaner, and smarter.»
+> Build Discord bots faster, cleaner, and smarter.
 
 ---
 
