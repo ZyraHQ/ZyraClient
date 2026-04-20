@@ -11,7 +11,7 @@ import { join } from "path";
 const variables: Record<string, Function> = {};
 
 const loadFunctions = async () => {
-  const dir = join(import.meta.dirname, "../functions");
+  const dir = join(import.meta.dirname, "./functions");
 
   for (const folder of readdirSync(dir)) {
     const folderPath = join(dir, folder);
