@@ -115,7 +115,7 @@ It does not enforce rigid patterns — instead, it gives you a flexible foundati
 
 # 📁 Suggested Structure
 
-```file
+```bash
 src/
  ├── commands/
  ├── events/
