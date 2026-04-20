@@ -1,38 +1,27 @@
 # ⚡ ZyraClient
 
->>> A modern, scalable, and developer-focused library for building Discord bots with clarity and efficiency.»
+«Build Discord bots faster, cleaner, and smarter.»
 
 ---
 
-# ✨ Overview
+# 🧭 About
 
-**ZyraClient** is designed to streamline Discord bot development by reducing unnecessary complexity and enforcing a clean, scalable architecture.
+ZyraClient is a modern abstraction layer built on top of discord.js, designed to eliminate friction in Discord bot development.
 
-Built on top of **discord.js**, it provides a higher-level abstraction that allows developers to focus on building features instead of managing low-level implementation details.
+It provides a clean architecture, expressive APIs, and a scalable foundation — allowing you to focus on features instead of repetitive setup and structural overhead.
 
-The goal is simple: deliver a faster, cleaner, and more maintainable development experience without sacrificing flexibility or performance.
-
----
-
-🎯 Philosophy
-
-ZyraClient is built around a few core principles:
-
-- Simplicity over verbosity — minimize boilerplate and cognitive overhead
-- Scalability by design — support both small projects and large systems
-- Developer experience first — intuitive structure and predictable behavior
-- Flexibility without lock-in — extend and customize when needed
+Whether you're building a small utility bot or a large-scale system, ZyraClient is engineered to keep your codebase organized, maintainable, and extensible.
 
 ---
 
-🚀 Features
+✨ Highlights
 
-- ⚡ Streamlined development workflow
-- 🧩 Unified command architecture (prefix & slash ready)
-- 🧠 Abstracted layer over discord.js
-- 🏗️ Modular and scalable structure
-- 🔒 Designed with safe patterns in mind
-- 🚧 Continuous evolution with new features planned
+- ⚡ Rapid setup — minimal configuration to get started
+- 🧩 Unified command system — prefix & slash support
+- 🧠 Abstraction over discord.js — less boilerplate, more logic
+- 🏗️ Modular architecture — built for scalability
+- 🔒 Safe patterns by design — cleaner and more predictable code
+- 🚀 Actively evolving — new features and improvements planned
 
 ---
 
@@ -42,7 +31,7 @@ npm install zyraclient
 
 ---
 
-⚡ Example Usage
+⚡ Quick Example
 
 import ZyraClient from "zyraclient";
 
@@ -52,7 +41,6 @@ const client = new ZyraClient({
   intents: ["Guilds", "GuildMessages", "MessageContent"],
 });
 
-// Bot status
 client.setStatus([
   {
     type: "Playing",
@@ -60,7 +48,6 @@ client.setStatus([
   },
 ]);
 
-// Prefix command
 client.addPrefixCommand({
   name: "ping",
   description: "Check bot latency",
@@ -69,7 +56,6 @@ client.addPrefixCommand({
   `,
 });
 
-// Slash command
 client.addSlashCommand({
   name: "say",
   description: "Make the bot say something",
@@ -87,28 +73,28 @@ client.addSlashCommand({
   `,
 });
 
-// Start bot
 await client.start();
 
 ---
 
-🧠 Core Concepts
+🧠 Design Principles
 
-Commands
+ZyraClient is built around a strong set of engineering principles:
 
-client.addPrefixCommand({
-  name: "hello",
-  code: `Hello $username 👋`,
-});
+- Clarity over complexity
+- Convention over configuration
+- Scalability from day one
+- Developer experience as a priority
 
-client.addSlashCommand({
-  name: "hello",
-  description: "Say hello",
-  type: "ChatInput",
-  code: `Hello $userDisplayName 👋`,
-});
+It avoids unnecessary abstractions while still providing powerful tools to accelerate development.
 
-ZyraClient provides a unified way to define both prefix and slash commands while keeping the syntax clean and expressive.
+---
+
+🧩 Architecture
+
+ZyraClient promotes a modular structure, encouraging separation of concerns and long-term maintainability.
+
+It does not enforce rigid patterns — instead, it gives you a flexible foundation that adapts to your workflow while maintaining consistency across your project.
 
 ---
 
@@ -133,22 +119,26 @@ src/
 
 🧪 Best Practices
 
-- Use environment variables for sensitive data
-- Keep commands modular
-- Avoid hardcoded values
-- Structure your project for scalability
+- 🔐 Use environment variables for sensitive data
+- 🧩 Keep features modular
+- 🚫 Avoid hardcoded values
+- 📈 Design with scalability in mind
 
 ---
 
 🤝 Contributing
 
-Contributions are welcome. Whether it's improving the core, suggesting new ideas, or refining the developer experience, every contribution helps shape the project.
+Contributions are welcome and encouraged.
+
+- Fork the repository
+- Create a new branch
+- Submit your improvements via Pull Request
 
 ---
 
 ⭐ Support
 
-If you find ZyraClient useful, consider supporting the project and helping it grow.
+If ZyraClient helps you, consider giving the project a star — it helps the ecosystem grow.
 
 ---
 
@@ -158,6 +148,8 @@ MIT License
 
 ---
 
-💭 Final Thoughts
+💭 Final Note
 
-ZyraClient is built to remove friction from Discord bot development — giving you the tools to build faster, structure better, and scale with confidence.
+ZyraClient is built to remove friction, increase productivity, and scale with your ideas.
+
+Less setup. More building.
